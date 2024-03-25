@@ -1,0 +1,15 @@
+<!-- templates/account/email_confirm.html -->
+{% extends '_base.html' %} 
+{% load i18n %} 
+{% load account %}                                                                                                      
+
+{% block content%}
+<h1>{% trans "Confirm E-mail Address" %}</h1>
+{% if confirmation %} 
+<form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
+  {% csrf_token %}
+  <button class="btn btn-primary" type="submit">{% trans 'Confirm' %}</button>
+</form>
+{% else %} {% url 'account_email' as email_url %}
+
+{% endif %} {% endblock %}
